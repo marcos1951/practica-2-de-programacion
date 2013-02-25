@@ -1,0 +1,88 @@
+using System;
+using System.Threading;
+
+namespace Practica2
+
+{
+    class Principal
+    {
+        public void muestraMenu()
+        {
+
+            Console.WriteLine("SELECCIONA LA OPCION QUE DESEA");
+            Console.WriteLine("1-. Reloj");
+            Console.WriteLine("2-. Cronometro");
+        
+        }
+
+
+        public void leerEntrada()
+        {
+            int opcion = int.Parse(Console.ReadLine());
+            if (opcion == 1)
+            {
+                while (true)
+                {
+                    Console.Clear();
+ //incia el reloj, sincronizado;
+                    
+                    Console.WriteLine(DateTime.Now.ToLongTimeString());
+                    Thread.Sleep(1000);
+                }
+               
+            }
+            else
+            
+            {
+  
+                //inicia el cronometro...
+
+        Console.WriteLine("CRONOMETRO");
+
+        int h = 00;
+        int m = 00;
+        int s = 00;
+        int x;
+        while (true)
+        {
+            Console.WriteLine("{0}:{1}:{2}", h, m, s);
+
+            x = Environment.TickCount;
+
+            while (Environment.TickCount <= x + 1000) ;
+            s = s + 1;
+
+            if (s == 60)
+            {
+                s = 0;
+                m = m + 1;
+                if (m == 60)
+                {
+                    m = 0;
+                    h = h + 1;
+                    if (h == 24)
+                    {
+                        h = 0;
+
+                    }
+                }
+            }
+            Console.ReadKey();
+        
+    }
+
+
+
+            }
+        }
+
+
+        public static void Main(string[] args)
+        {
+
+            Principal programa = new Principal();
+            programa.muestraMenu();
+            programa.leerEntrada();
+        }
+    }
+}
